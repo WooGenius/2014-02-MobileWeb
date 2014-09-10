@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<!-- minimal-ui for ios safari -->
+<meta name="viewport" content="width=device-width, minimal-ui">
+<title>Parallax Genius Demo</title>
+<script src="js/parallax-genius.js" type="text/javascript"></script>
+<style>
+
+  /* user css style
+  --------------------------------------------- */
+
+  body, html {
+    overflow: hidden;
+  }
+
+  body {
+    font: 100% / 1.5 Arial;
+  }
+
+  * {
+    margin:0;
+    padding:0;
+  }
+
+  #group1 .parallax-layer-base {
+    background: rgb(102,204,102);
+  }
+
+  #group2 .parallax-layer-back {
+    background: rgb(123,210,102);
+  }
+
+  #group3 .parallax-layer-base {
+    background: rgb(153,216,101);
+  }
+
+  #group4 .parallax-layer-back {
+    background: rgb(184,223,101);
+  }
+
+  #group5 .parallax-layer-base {
+    background: rgb(214,229,100);
+  }
+
+  #group6 .parallax-layer-back {
+    background: rgb(245,235,100);
+  }
+
+  #group7 .parallax-layer-base {
+    background: rgb(255,241,100);
+  }
+</style>
+</head>
+<body>
+	<div id="wrapper">
+	<div id="scroller"></div>
+</div>
+  <div class="parallax">
+  	<div id="group1" class="parallax-group">
+      <div class="parallax-layer parallax-layer-base">
+        <div class="title">Base Layer</div>
+      </div>
+    </div>
+    <div id="group2" class="parallax-group">
+      <div class="parallax-layer parallax-layer-base">
+        <div class="title">Base Layer</div>
+      </div>
+      <div class="parallax-layer parallax-layer-back">
+        <div class="title">Background Layer</div>
+      </div>
+    </div>
+    <div id="group3" class="parallax-group">
+      <div class="parallax-layer parallax-layer-fore">
+        <div class="title">Foreground Layer</div>
+      </div>
+      <div class="parallax-layer parallax-layer-base">
+        <div class="title">Base Layer</div>
+      </div>
+    </div>
+    <div id="group4" class="parallax-group">
+      <div class="parallax-layer parallax-layer-base">
+        <div class="title">Base Layer</div>
+      </div>
+      <div class="parallax-layer parallax-layer-back">
+        <div class="title">Background Layer</div>
+      </div>
+    </div>
+    <div id="group5" class="parallax-group">
+      <div class="parallax-layer parallax-layer-fore">
+        <div class="title">Foreground Layer</div>
+      </div>
+      <div class="parallax-layer parallax-layer-base">
+        <div class="title">Base Layer</div>
+      </div>
+    </div>
+    <div id="group6" class="parallax-group">
+      <div class="parallax-layer parallax-layer-back">
+        <div class="title">Background Layer</div>
+      </div>
+      <div class="parallax-layer parallax-layer-base">
+        <div class="title">Base Layer</div>
+      </div>
+    </div>
+    <div id="group7" class="parallax-group">
+      <div class="parallax-layer parallax-layer-base">
+        <div class="title">Base Layer</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
