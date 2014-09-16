@@ -27,8 +27,7 @@ function detectBrowser() {
 	      	return "IE9 over";
 	    else
 	    	return "IE9 under";
-
-  	};
+  	}
 
 	// for moderm browser
   	return "Modern Browser";
@@ -45,7 +44,7 @@ if (detectBrowser() == "Modern Browser") {
 
 } else {
 
-	var fileref, scrollerDiv, parallaxDiv, myScroll, setIScroll;
+	var fileref, parallaxDiv, myScroll, setIScroll;
 
 	// import iscroll.js
 	fileref = document.createElement('script');
@@ -60,26 +59,71 @@ if (detectBrowser() == "Modern Browser") {
 	fileref.setAttribute("href", MOBILE_CSSPATH);
 	document.getElementsByTagName("head")[0].appendChild(fileref);
 
-	// // set Scroller Div
-	// document.addEventListener("DOMContentLoaded", function(e) {
-	// 	scrollerDiv = document.createElement("div");
-	// 	scrollerDiv.setAttribute("id", "scroller");
-	// 	parallaxDiv = document.querySelector(".parallax");
-	// 	scrollerDiv.innerHTML = parallaxDiv.innerHTML;
-	// 	parallaxDiv.innerHTML = scrollerDiv.outerHTML;
-	// });
+	// set Scroller Div
+	document.addEventListener("DOMContentLoaded", function(e) {
+		var scrollerDiv;
+		parallaxDiv = document.querySelector(".parallax");
+		var scrollerDiv = document.createElement("div");
+		scrollerDiv.setAttribute("class", 'scroller');
+		scrollerDiv.innerHTML = parallaxDiv.innerHTML;
+		parallaxDiv.innerHTML = scrollerDiv.outerHTML;
 
+		// initial setting
+		var groups = document.querySelectorAll('.parallax-group');
+		for (var i = 0; i < groups.length; i++) {
+			// childNode for IE >= 8
+			var details = groups[i].childNodes;
+			for (var j = 0; j < details.length; j++) {
+				if (details[j].nodeName == '#text') {
+					continue;
+				} else if (details[j].classList.contains('parallax-layer-back')) {
+					var top = -50 * i;
+					details[j].style.top = top+'vh';
 
+					scrollerDiv = document.createElement("div");
+					scrollerDiv.setAttribute("class", 'scroller-back');
+					scrollerDiv.innerHTML = details[j].outerHTML;
+					details[j].outerHTML = scrollerDiv.outerHTML;
+				} else if (details[j].classList.contains('parallax-layer-fore')) {
+					var top = 100 * i;
+					details[j].style.top = top+'vh';
+					scrollerDiv = document.createElement("div");
+					scrollerDiv.setAttribute("class", 'scroller-fore');
+					scrollerDiv.innerHTML = details[j].outerHTML;
+					details[j].outerHTML = scrollerDiv.outerHTML;
+				}
+			}
+		}
+	});
 
 	function loaded () {
-		myScroll = new IScroll('#wrapper', {
-			mouseWheel: true,
-			indicators: [{
-				el: document.querySelector('.parallax-group'),
+		var indicators = [];
+		var scrollerBackDiv = document.querySelectorAll('.scroller-back');
+		var scrollerForeDiv = document.querySelectorAll('.scroller-fore');
+
+		for (var i = 0; i < scrollerBackDiv.length; i++) {
+			indicators.push({
+				el: scrollerBackDiv[i],
 				resize: false,
 				ignoreBoundaries: true,
-				speedRatioY: -1
-			}]
+				speedRatioY: -0.5
+			});
+		}
+
+		for (var i = 0; i < scrollerForeDiv.length; i++) {
+			indicators.push({
+				el: scrollerForeDiv[i],
+				resize: false,
+				ignoreBoundaries: true,
+				speedRatioY: 1
+			});
+		}
+
+		console.log(indicators);
+
+		myScroll = new IScroll('.parallax', {
+			mouseWheel: true,
+			indicators: indicators
 		});
 	}
 
